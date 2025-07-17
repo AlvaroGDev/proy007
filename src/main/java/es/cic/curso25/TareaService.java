@@ -1,26 +1,43 @@
 package es.cic.curso25;
 
-import java.util.Map;
+import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 // Aquí iría la lógica de negocio, es decir, cosas que dependen de cómo funciona la empresa:
 // por ejemplo, si el cliente hace una compra por encima de X importe, le podriamos añadir envío gratis o algún regalo
+
 @Service
 public class TareaService {
 
     @Autowired
     private TareaRepository tareaRepository;
 
-    public long create (Tarea tarea){
+    public long create(Tarea tarea) {
 
-        return tareaRepository.create(tarea);
+        tareaRepository.save(tarea);
+
+        return tarea.getId();
     }
 
-    public Map<Long, Tarea> getTareas(){
+    public Tarea getTarea(long id){
+        
+        Optional<Tarea> resultado = tareaRepository.findById(id);
+        return resultado.orElse(null); //Devuelve resultado, en caso de que no exista, devuelve null y no explota
+    }
 
-        return tareaRepository.getAllTareas();
-    } //Esto deberia devolver una tarea que habria buscado en el repositorio utilizando el id
+    public List<Tarea> get(){
+        return tareaRepository.findAll();
+    }
+
+    public void update(Tarea tarea){
+        tareaRepository.save(tarea); //El sabrá cuando lo llamen si ese save es un guardar o un modificar
+    }
+    
+    public void delete(long id){
+        tareaRepository.deleteById(id);
+    }
 
 }

@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.management.RuntimeErrorException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/tareas")
-
 public class TareaController {
+    private final static Logger LOGGER = LoggerFactory.getLogger(TareaController.class);
 
     @Autowired
     private TareaService tareaService;
@@ -28,33 +30,44 @@ public class TareaController {
 
     @PostMapping
     public long create(Tarea tarea) {
-        if (tarea.getId() != null) { // Es importante que sea Long (objeto) y no la primitiva, porque si no, no deja
-                                     // compararlo con null
-            throw new RuntimeException("No me puedes pasar un ID al crear la tarea");
+        try {
+            if (tarea.getId() != null) { // Si NO es null, entrará y dará error, ya que NO debemos pasarle id
+                throw new RuntimeException("al crear no me puedes pasar un id");
+            }
+
+        } catch (RuntimeException re) {
+
+            re.printStackTrace();
+            LOGGER.error(re.getMessage());
+            throw new TareaException("Ha fallado la tarea al crear: " + re.getMessage(), re);
+
         }
         return tareaService.create(tarea);
     }
 
     @DeleteMapping
-    public void delete(long id) {
-        // TODO: recibir un id, buscarlo en el repositorio, borrarlo
+    public void delete(Long id) {
+        tareaService.delete(id);
     }
 
     @PutMapping
     public void update(Tarea tarea) {
         // TODO: metodo para actualizar un objeto
         // Put se manda la tarea entera y se cambian luego los datos
-        // Patch, por el contrario, se le envían los campos que cambian, pero es más complicado de hacer
+        // Patch, por el contrario, se le envían los campos que cambian, pero es más
+        // complicado de hacer
 
+    }
+
+    @GetMapping("/{id}")
+    public Tarea getTarea(@PathVariable Long id){
+       return tareaService.getTarea(id);
     }
 
     @GetMapping()
-    public String getTareas() {
-       Map<Long, Tarea> misTareas = tareaService.getTareas();
+    public List<Tarea> getTareas() {
+        return tareaService.get();
 
-        return misTareas.toString();
-        }
-        //Esto es una prueba para ver que me devuelve cosas
     }
-
-
+    
+}
