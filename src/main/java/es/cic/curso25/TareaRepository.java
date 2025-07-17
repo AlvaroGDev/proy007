@@ -34,6 +34,14 @@ public class TareaRepository {
         mayor++;
         return mayor;
     }
+
+    public Tarea getTarea(long id){
+
+      Tarea miTarea = new Tarea();
+        miTarea.setDescTarea("todo esto debería cogerlo");
+        miTarea.setEntornoTarea("de las tareas del Map");
+        return miTarea;
+    }
 }
     /*
     getSiguienteId() lo que hace es crear un Set (una coleccion de elementos unicos sin permitir repeticion)

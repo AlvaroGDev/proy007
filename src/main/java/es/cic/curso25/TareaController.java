@@ -3,7 +3,13 @@ package es.cic.curso25;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +24,31 @@ public class TareaController {
 
     List<Tarea> listadoTareas = new ArrayList<>();
 
-    // @PostMapping
-    // public long create
+    @PostMapping
+    public long create(Tarea tarea) {
+        if (tarea.getId() != null) { // Es importante que sea Long (objeto) y no la primitiva, porque si no, no deja
+                                     // compararlo con null
+            throw new RuntimeException("No me puedes pasar un ID al crear la tarea");
+        }
+        return tareaService.create(tarea);
+    }
+
+    @DeleteMapping
+    public void delete(long id) {
+        // TODO: recibir un id, buscarlo en el repositorio, borrarlo
+    }
+
+    @PatchMapping
+    public void update(Tarea tarea) {
+        // TODO: metodo para actualizar un objeto
+        // Se deberia pasar la tarea entera?
+
+    }
+
+    @GetMapping("/{id}")
+    public Tarea get(@PathVariable long id) {
+        Tarea miTarea = tareaService.getTarea(id);
+        return miTarea;
+    }
 
 }

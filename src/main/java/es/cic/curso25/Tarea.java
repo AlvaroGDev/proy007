@@ -2,13 +2,13 @@ package es.cic.curso25;
 
 public class Tarea {
 
-    private long id;
+    private Long id;
     private String nombreTarea;
     private String descTarea;
     private String personaTarea;
     private String prioridadTarea;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

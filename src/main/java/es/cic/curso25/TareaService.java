@@ -14,4 +14,8 @@ public class TareaService {
         return tareaRepository.create(tarea);
     }
 
+    public Tarea getTarea(long id){
+        return tareaRepository.getTarea(id);
+    } //Esto deberia devolver una tarea que habria buscado en el repositorio utilizando el id
+
 }
