@@ -5,6 +5,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+// Aquí iría la lógica de negocio, es decir, cosas que dependen de cómo funciona la empresa:
+// por ejemplo, si el cliente hace una compra por encima de X importe, le podriamos añadir envío gratis o algún regalo
 @Service
 public class TareaService {
 
