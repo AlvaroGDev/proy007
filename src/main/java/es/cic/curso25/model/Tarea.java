@@ -1,4 +1,4 @@
-package es.cic.curso25;
+package es.cic.curso25.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,7 +22,22 @@ public class Tarea {
     private String personaTarea;
     private String prioridadTarea;
 
- 
+    public Tarea(){
+
+    }
+
+    public Tarea(String nombreTarea, String descTarea, String entornoTarea, String personaTarea,
+            String prioridadTarea) {
+        this.nombreTarea = nombreTarea;
+        this.descTarea = descTarea;
+        this.entornoTarea = entornoTarea;
+        this.personaTarea = personaTarea;
+        this.prioridadTarea = prioridadTarea;
+    }
+
+    //Al no tener ningún constructor, usa el de por defecto, que es el vacío
+    //Al haber creado un constructor con parámetros para generarlos al iniciar el programa, te obliga a hacerle uno vacío para sus create()
+
     public Long getId() {
         return id;
     }

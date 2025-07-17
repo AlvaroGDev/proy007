@@ -1,10 +1,13 @@
-package es.cic.curso25;
+package es.cic.curso25.service;
 
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import es.cic.curso25.model.Tarea;
+import es.cic.curso25.repository.TareaRepository;
 
 // Aquí iría la lógica de negocio, es decir, cosas que dependen de cómo funciona la empresa:
 // por ejemplo, si el cliente hace una compra por encima de X importe, le podriamos añadir envío gratis o algún regalo
