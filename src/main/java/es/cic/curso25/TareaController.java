@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,10 +40,11 @@ public class TareaController {
         // TODO: recibir un id, buscarlo en el repositorio, borrarlo
     }
 
-    @PatchMapping
+    @PutMapping
     public void update(Tarea tarea) {
         // TODO: metodo para actualizar un objeto
-        // Se deberia pasar la tarea entera?
+        // Put se manda la tarea entera y se cambian luego los datos
+        // Patch, por el contrario, se le envían los campos que cambian, pero es más complicado de hacer
 
     }
 
