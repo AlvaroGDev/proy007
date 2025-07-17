@@ -41,6 +41,18 @@ public class TareaController {
         return tareaService.create(tarea);
     }
 
+    
+    @GetMapping("/{id}")
+    public Tarea getTarea(@PathVariable Long id) {
+        return tareaService.getTarea(id);
+    }
+
+    @GetMapping()
+    public List<Tarea> getTareas() {
+        return tareaService.get();
+
+    }
+
     @DeleteMapping
     public void delete(Long id) {
         tareaService.delete(id);
@@ -56,15 +68,5 @@ public class TareaController {
 
     }
 
-    @GetMapping("/{id}")
-    public Tarea getTarea(@PathVariable Long id) {
-        return tareaService.getTarea(id);
-    }
-
-    @GetMapping()
-    public List<Tarea> getTareas() {
-        return tareaService.get();
-
-    }
 
 }
