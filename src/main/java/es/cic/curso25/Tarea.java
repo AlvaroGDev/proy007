@@ -5,9 +5,11 @@ public class Tarea {
     private Long id;
     private String nombreTarea;
     private String descTarea;
+    private String entornoTarea;
     private String personaTarea;
     private String prioridadTarea;
 
+ 
     public Long getId() {
         return id;
     }
@@ -56,5 +58,5 @@ public class Tarea {
         this.entornoTarea = entornoTarea;
     }
 
-    private String entornoTarea;
+   
 }
