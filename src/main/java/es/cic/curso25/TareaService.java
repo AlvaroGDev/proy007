@@ -1,5 +1,7 @@
 package es.cic.curso25;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +16,9 @@ public class TareaService {
         return tareaRepository.create(tarea);
     }
 
-    public Tarea getTarea(long id){
-        return tareaRepository.getTarea(id);
+    public Map<Long, Tarea> getTareas(){
+
+        return tareaRepository.getAllTareas();
     } //Esto deberia devolver una tarea que habria buscado en el repositorio utilizando el id
 
 }

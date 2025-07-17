@@ -2,6 +2,7 @@ package es.cic.curso25;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.management.RuntimeErrorException;
 
@@ -45,10 +46,13 @@ public class TareaController {
 
     }
 
-    @GetMapping("/{id}")
-    public Tarea get(@PathVariable long id) {
-        Tarea miTarea = tareaService.getTarea(id);
-        return miTarea;
+    @GetMapping()
+    public String getTareas() {
+       Map<Long, Tarea> misTareas = tareaService.getTareas();
+
+        return misTareas.toString();
+        }
+        //Esto es una prueba para ver que me devuelve cosas
     }
 
-}
+
