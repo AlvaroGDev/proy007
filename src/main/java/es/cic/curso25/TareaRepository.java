@@ -47,6 +47,11 @@ public class TareaRepository {
 
         return tareas;
     }
+
+     public Boolean borrarTarea(long id){
+
+       return tareas.remove(id) != null;
+    } //Esto devuelve la tarea, si existe, será distinto de null y devolvería true, si no existe, será igual que null y devolvería false
 }
     /*
     getSiguienteId() lo que hace es crear un Set (una coleccion de elementos unicos sin permitir repeticion)
