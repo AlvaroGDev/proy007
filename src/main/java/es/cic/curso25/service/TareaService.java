@@ -18,14 +18,14 @@ public class TareaService {
     @Autowired
     private TareaRepository tareaRepository;
 
-    public long create(Tarea tarea) {
+    public Long create(Tarea tarea) {
 
         tareaRepository.save(tarea);
 
         return tarea.getId();
     }
 
-    public Tarea getTarea(long id){
+    public Tarea getTarea(Long id){
         
         Optional<Tarea> resultado = tareaRepository.findById(id);
         return resultado.orElse(null); //Devuelve resultado, en caso de que no exista, devuelve null y no explota
@@ -39,7 +39,7 @@ public class TareaService {
         tareaRepository.save(tarea); //El sabrá cuando lo llamen si ese save es un guardar o un modificar
     }
     
-    public void delete(long id){
+    public void delete(Long id){
         tareaRepository.deleteById(id);
     }
 
