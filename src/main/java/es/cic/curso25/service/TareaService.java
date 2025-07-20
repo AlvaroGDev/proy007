@@ -18,11 +18,11 @@ public class TareaService {
     @Autowired
     private TareaRepository tareaRepository;
 
-    public long create(Tarea tarea) {
+    public Tarea create(Tarea tarea) {
 
         tareaRepository.save(tarea);
 
-        return tarea.getId();
+        return tarea;
     }
 
     public Tarea getTarea(long id){
@@ -36,7 +36,7 @@ public class TareaService {
     }
 
     public void update(Tarea tarea){
-        tareaRepository.save(tarea); //El sabrá cuando lo llamen si ese save es un guardar o un modificar
+         tareaRepository.save(tarea); //El sabrá cuando lo llamen si ese save es un guardar o un modificar
     }
     
     public void delete(long id){

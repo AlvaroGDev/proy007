@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -25,7 +26,7 @@ public class TareaController {
     private TareaService tareaService;
 
     @PostMapping
-    public long create(Tarea tarea) {
+    public Tarea create(Tarea tarea) {
         try {
             if (tarea.getId() != null) { // Si NO es null, entrará y dará error, ya que NO debemos pasarle id
                 throw new RuntimeException("al crear no me puedes pasar un id");
@@ -53,13 +54,13 @@ public class TareaController {
 
     }
 
-    @DeleteMapping
-    public void delete(Long id) {
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id) {
         tareaService.delete(id);
     }
 
     @PutMapping
-    public void update(Tarea tarea) {
+    public void update(@RequestBody Tarea tarea) {
         // Put se manda la tarea entera y se cambian luego los datos
         // Patch, por el contrario, se le envían los campos que cambian, pero es más
         // complicado de hacer
