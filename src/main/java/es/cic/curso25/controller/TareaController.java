@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import es.cic.curso25.IntentoModificacionSecurityException;
 import es.cic.curso25.TareaException;
 import es.cic.curso25.model.Tarea;
 import es.cic.curso25.service.TareaService;
@@ -29,7 +30,7 @@ public class TareaController {
     public Tarea create(Tarea tarea) {
         try {
             if (tarea.getId() != null) { // Si NO es null, entrará y dará error, ya que NO debemos pasarle id
-                throw new RuntimeException("al crear no me puedes pasar un id");
+                throw new IntentoModificacionSecurityException("Has tratado de modificar mediante creación.");
             }
 
         } catch (RuntimeException re) {
